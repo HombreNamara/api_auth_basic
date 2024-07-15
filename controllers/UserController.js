@@ -11,6 +11,23 @@ router.post('/create', async (req, res) => {
     res.status(response.code).json(response.message);
 });
 
+router.get('/getAllUsers', async (req, res) => {
+    const response = await UserService.getAllUsers();
+    res.status(response.code).json(response.message);
+});
+
+router.get('/findUsers', async (req, res) => {
+    const response = await UserService.findUsers(req);
+    res.status(response.code).json(response.message);
+});
+
+router.post('/bulkCreate', async (req, res) => {
+    const response = await UserService.bulkCreate(req);
+    res.status(response.code).json(response.message);
+});
+
+
+
 router.get(
     '/:id',
     [
@@ -46,5 +63,6 @@ router.delete('/:id',
        const response = await UserService.deleteUser(req.params.id);
        res.status(response.code).json(response.message);
     });
+
 
 export default router;
